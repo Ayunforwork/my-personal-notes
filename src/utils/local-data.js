@@ -52,7 +52,7 @@ function getNote(id) {
   return foundedNote;
 }
 
-function getNotes(id) {
+function getNoted(id) {
   if (!id) {
     return null;
   }
@@ -125,7 +125,7 @@ export {
   deleteNote,
   editNote,
   getNote,
-  getNotes,
+  getNoted,
   archiveNote,
   unarchiveNote,
   addNote,

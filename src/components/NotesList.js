@@ -1,19 +1,19 @@
 import React from "react";
-import NotesItemBody from "./NotesItemBody";
+import { PropTypes } from "prop-types";
+import NoteItem from "./NoteItem";
 
-function NotesList({ notes, onDelete }) {
+function NotesList({ notes }) {
     return (
         <div className="notes-list">
-            {notes.length !== 0 ? notes.map((note) => (
-					<NotesItemBody
-						key={note.id}
-						id={note.id}
-						onDelete={onDelete}
-						{...note}
-					/>)) : <p className='notes-list-empty'>Tidak ada catatan</p>
-			}
-        </div>
+      {notes.length
+        ? notes.map((note) => <NoteItem key={note.id} {...note} />)
+        : "Tidak ada catatan"}
+    </div>
     );
+}
+
+NotesList.propTypes = {
+	notes: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default NotesList;

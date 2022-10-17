@@ -4,13 +4,14 @@ import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import DetailPage from "./pages/DetailPage";
 import NotFound from "./pages/404";
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import ArchivePage from "./pages/ArchivePage";
 import RegisterPage from "./pages/RegisterPage";
 import Navigation from "./components/Navigation";
 import LoginPage from "./pages/LoginPage";
 import { getUserLogged, putAccessToken } from "./utils/network-data"
 import { LocaleProvider } from "./contexts/LocaleContext";
+import Content from "./pages/Content";
 
 
 
@@ -86,7 +87,7 @@ class App extends React.Component {
           <div className='app-container'>
             <header>
               <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Catatan' : 'Note App'}</h1>
-              <Navigation />
+              <Content />
             </header>
             <main>
               <Routes>
@@ -126,40 +127,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-// import React from "react";
-// import AddPage from "./pages/AddPage";
-// import HomePage from "./pages/HomePage";
-// import { Route, Routes } from "react-router-dom";
-// import DetailPage from "./pages/DetailPage";
-// import NotFound from "./pages/404";
-// import { Link } from 'react-router-dom';
-// import ArchivePage from "./pages/ArchivePage";
-
-
-// function App() {
-  // return (
-  //   <div className="app-container">
-  //     <header>
-  //       <Link to="/">
-  //       <h1>Aplikasi Catatan</h1>
-  //       </Link>
-  //       <Link to="/arsip">
-  //         <h1>Arsip</h1>
-  //       </Link>
-  //     </header>
-  //     <main>
-  //       <Routes>
-  //         <Route path="*" element={<NotFound />} />
-  //         <Route path="/" element={<HomePage />} />
-  //         <Route path="/add" element={<AddPage />} />
-  //         <Route path="/notes/:id" element={<DetailPage />} />
-  //         <Route path="/arsip" element={<ArchivePage />} />
-  //       </Routes>
-  //     </main>
-  //   </div>
-  // );
-// }
-
-// export default App;
-

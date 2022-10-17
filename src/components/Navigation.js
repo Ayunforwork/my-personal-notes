@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 import { LocaleConsumer } from "../contexts/LocaleContext"
+import Content from "../pages/Content";
 
 function Navigation({ logout, name }) {
     return (
@@ -13,7 +14,8 @@ function Navigation({ logout, name }) {
                         <nav className="navigation">
                             <ul>
                                 <li><Link to="/archives">Arsip</Link></li>
-                                <li><button onClick={toggleLocale} className="toggle-locale">{locale === 'id' ? 'en' : 'id'}</button></li>
+                                <li><Link to="/">Home</Link></li>
+                                <li><Content /></li>
                                 <li><button onClick={logout} className="button-logout">{name} <FiLogOut /></button></li>
                             </ul>
                         </nav>

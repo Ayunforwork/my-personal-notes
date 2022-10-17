@@ -4,6 +4,7 @@ import NotesItemBody from "./NotesItemBody";
 import { Link } from "react-router-dom";
 
 function NoteItem({ id, title, createdAt, body }) {
+   // console.log("ini props ==>>", props)
     return (
         <div className="note-item" key={id}>
             <Link to={`/notes/${id}`}>{title}</Link>

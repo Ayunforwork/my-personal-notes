@@ -1,7 +1,8 @@
+
 import React from "react";
 import NotesList from "../components/NotesList";
 import SearchBar from "../components/SearchBar";
-import { getArchivedNotes } from "../utils/local-data";
+import { getArchivedNotes } from "../utils/network-data"
 
 class ArchivePage extends React.Component{
     constructor(props){

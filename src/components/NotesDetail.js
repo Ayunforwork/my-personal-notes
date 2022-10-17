@@ -7,7 +7,7 @@ function NotesDetail({ id, title, createdAt, body, onDelete }) {
   return (
     <div className="detail-page">
       <h2 className="detail-page_title">{title}</h2>
-      <p className="detail-page_createdAt">Created At: {showFormattedDateID(createdAt)}</p>
+      <p className="detail-page_createdAt">{showFormattedDateID(createdAt)}</p>
       <p className="detail-page_body">{body}</p>
       <DeleteButton id={id} onDelete={onDelete}/>
     </div>
@@ -22,4 +22,4 @@ NotesDetail.propTypes = {
     onDelete: PropTypes.func.isRequired,
 };
 
-export default NotesDetail;
+export default NotesDetail; 

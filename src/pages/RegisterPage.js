@@ -24,28 +24,3 @@ function RegisterPage() {
 
 
 export default RegisterPage;
-// import React from "react";
-// import { Link, useNavigate } from "react-router-dom";
-// import { LocaleConsumer } from "../contexts/LocaleContext";
-// import RegisterInput from "../components/RegisterInput";
-// import { register } from "../utils/network-data";
-
-// function RegisterPage() {
-//     const navigate = useNavigate();
-
-//     async function onRegisterHandler(user) {
-//        const { error } = await register(user);
-//        if(!error) {
-//         navigate('/');
-//        }
-//     }
-
-//     return (
-//         <section className="input-register">
-//             <RegisterInput register={onRegisterHandler} />
-//             <p>kembali ke <Link to="/">Masuk</Link></p>
-//         </section>
-//     )
-// }
-
-// export default RegisterPage;

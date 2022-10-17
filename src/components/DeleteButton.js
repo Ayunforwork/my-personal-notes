@@ -2,17 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BiTrash, BiArchive } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import { deleteNote } from '../utils/local-data';
 
 function DeleteButton({ id, onDelete }) {
     const navigate = useNavigate();
 
-    function onDeleteHandler(noteId) {
-        onDelete(noteId)
+    function onDeleteHandler(id) {
+        onDelete(id)
     }
 
-    function onArchiveHandler(noteId) {
-        onArchiveHandler(noteId)
+    function onArchiveHandler(id) {
+        onArchiveHandler(id)
     }
 
     return (
@@ -27,7 +26,7 @@ function DeleteButton({ id, onDelete }) {
             </button>
             <button className='action' onClick={() => {
                 onArchiveHandler(id);
-                navigate("/archive")
+                navigate("/arsip")
             }}>
                 <BiArchive />
             </button>

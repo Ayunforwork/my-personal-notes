@@ -12,6 +12,8 @@ import LoginPage from "./pages/LoginPage";
 import { getUserLogged, putAccessToken } from "./utils/network-data"
 import { LocaleProvider } from "./contexts/LocaleContext";
 import Content from "./pages/Content";
+import {ThemeProvider} from "./contexts/ThemeContext";
+import ToggleTheme from "./components/ToggleTheme";
 
 
 
@@ -22,6 +24,15 @@ class App extends React.Component {
     this.state = {
       authedUser: null,
       initializing: true,
+      theme: 'dark',
+      toggleTheme: () => {
+        this.setState((prevState) => {
+          return {
+            theme: prevState.theme === "dark" ? "light" : "dark"
+          };;
+        });
+      },
+
       localeContext: {
         locale: 'id',
         toggleLocale: () => {
@@ -82,12 +93,15 @@ class App extends React.Component {
 
     if (this.state.authedUser === null) {
       return (
+        <ThemeProvider value={this.state}>
+
         <LocaleProvider value={this.state.localeContext}>
 
           <div className='app-container'>
             <header>
               <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Catatan' : 'Note App'}</h1>
               <Content />
+              <ToggleTheme />
             </header>
             <main>
               <Routes>
@@ -97,9 +111,12 @@ class App extends React.Component {
             </main>
           </div>
         </LocaleProvider>
+        </ThemeProvider>
       )
     }
     return (
+      <ThemeProvider value={this.state}>
+
       <LocaleProvider value={this.state.localeContext}>
 
         <div className="app-container">
@@ -121,6 +138,7 @@ class App extends React.Component {
           </main>
         </div>
       </LocaleProvider>
+      </ThemeProvider>
     );
 
   }

@@ -1,35 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BiTrash, BiArchive } from 'react-icons/bi';
+import { BiTrash } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
-function DeleteButton({ id, onDelete }) {
+function DeleteButton({ id, onDelete, onArchiveHandler }) {
     const navigate = useNavigate();
 
-    function onDeleteHandler(id) {
-        onDelete(id)
+    async function onDeleteHandler(id) {
+        await onDelete(id)
     }
 
-    function onArchiveHandler(id) {
-        onArchiveHandler(id)
-    }
-
+   
     return (
         <div className='detail-page_action'>
 
-            <button className='action' onClick={() => {
-                onDeleteHandler(id);
+            <button className='action' onClick={async () => {
+                await onDeleteHandler(id);
                 navigate("/");
             }}
             >
                 <BiTrash />
             </button>
-            <button className='action' onClick={() => {
-                onArchiveHandler(id);
-                navigate("/arsip")
-            }}>
-                <BiArchive />
-            </button>
+            
         </div>
 
     );

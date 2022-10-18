@@ -119,6 +119,7 @@ async function getNote(id) {
 }
 
 async function archiveNote(id) {
+  console.log("terpanggil ",id)
   const response = await fetchWithToken(`${BASE_URL}/notes/${id}/archive`, {
     method: 'POST',
   });

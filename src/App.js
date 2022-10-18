@@ -12,10 +12,8 @@ import LoginPage from "./pages/LoginPage";
 import { getUserLogged, putAccessToken } from "./utils/network-data"
 import { LocaleProvider } from "./contexts/LocaleContext";
 import Content from "./pages/Content";
-import {ThemeProvider} from "./contexts/ThemeContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import ToggleTheme from "./components/ToggleTheme";
-
-
 
 class App extends React.Component {
   constructor(props) {
@@ -24,34 +22,37 @@ class App extends React.Component {
     this.state = {
       authedUser: null,
       initializing: true,
-      theme: 'dark',
+      theme: localStorage.getItem("theme") || "light",
       toggleTheme: () => {
         this.setState((prevState) => {
+          const newTheme = prevState.theme === "light" ? "dark" : "light";
+          localStorage.setItem("theme", newTheme);
+
           return {
-            theme: prevState.theme === "dark" ? "light" : "dark"
-          };;
+            theme: newTheme,
+          };
         });
       },
-
       localeContext: {
-        locale: 'id',
+        locale: localStorage.getItem("locale") || "id",
         toggleLocale: () => {
           this.setState((prevState) => {
+            const newLocale = prevState.localeContext.locale === "id" ? "en" : "id";
+            localStorage.setItem("locale", newLocale);
             return {
               localeContext: {
                 ...prevState.localeContext,
-                locale: prevState.localeContext.locale === 'id' ? 'en' : 'id'
-              }
-            }
-          })
-        }
-      }
+                locale: newLocale,
+              },
+            };
+          });
+        },
+      },
     };
 
     this.onLoginSuccess = this.onLoginSuccess.bind(this);
     this.onLogout = this.onLogout.bind(this);
   }
-
 
   async onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
@@ -86,6 +87,8 @@ class App extends React.Component {
     putAccessToken('');
   }
 
+  
+
   render() {
     if (this.state.initializing) {
       return null;
@@ -94,14 +97,11 @@ class App extends React.Component {
     if (this.state.authedUser === null) {
       return (
         <ThemeProvider value={this.state}>
-
         <LocaleProvider value={this.state.localeContext}>
-
           <div className='app-container'>
             <header>
               <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Catatan' : 'Note App'}</h1>
               <Content />
-              <ToggleTheme />
             </header>
             <main>
               <Routes>
@@ -116,15 +116,10 @@ class App extends React.Component {
     }
     return (
       <ThemeProvider value={this.state}>
-
       <LocaleProvider value={this.state.localeContext}>
-
         <div className="app-container">
           <header>
-            
-              <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Catatan' : 'Note App'}</h1>
-            
-
+            <h1>{this.state.localeContext.locale === 'id' ? 'Aplikasi Catatan' : 'Note App'}</h1>
             <Navigation logout={this.onLogout} name={this.state.authedUser.name} />
           </header>
           <main>

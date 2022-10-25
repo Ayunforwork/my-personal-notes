@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { showFormattedDateID } from "../utils/format-time";
 import DeleteButton from "./DeleteButton";
-import ArchiveButton from "./ArchiveButton"
 
 function NotesDetail({ id, title, createdAt, body, onDelete, onArchiveHandler }) {
   return (
@@ -11,7 +10,7 @@ function NotesDetail({ id, title, createdAt, body, onDelete, onArchiveHandler })
       <p className="detail-page_createdAt">{showFormattedDateID(createdAt)}</p>
       <p className="detail-page_body">{body}</p>
       <DeleteButton id={id} onDelete={onDelete} />
-      <ArchiveButton onArchiveHandler={onArchiveHandler} />
+      
     </div>
   );
 }

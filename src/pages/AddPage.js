@@ -19,7 +19,7 @@ function AddPage() {
                     return (
                         <section>
                             <div>
-                                <h2>Tambah Catatan</h2>
+                                <h2>{locale === 'id' ? 'Tambah Catatan' : 'Add Note'}</h2>
                                 <NoteInput addNote={onAddNoteHandler} />
                             </div>
                         </section>

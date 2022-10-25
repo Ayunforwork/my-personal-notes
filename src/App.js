@@ -4,8 +4,6 @@ import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import DetailPage from "./pages/DetailPage";
 import NotFound from "./pages/404";
-//import { Link } from 'react-router-dom';
-import ArchivePage from "./pages/ArchivePage";
 import RegisterPage from "./pages/RegisterPage";
 import Navigation from "./components/Navigation";
 import LoginPage from "./pages/LoginPage";
@@ -22,10 +20,10 @@ class App extends React.Component {
     this.state = {
       authedUser: null,
       initializing: true,
-      theme: localStorage.getItem("theme") || "light",
+      theme: localStorage.getItem("theme") || "dark",
       toggleTheme: () => {
         this.setState((prevState) => {
-          const newTheme = prevState.theme === "light" ? "dark" : "light";
+          const newTheme = prevState.theme === "dark" ? "light" : "dark";
           localStorage.setItem("theme", newTheme);
 
           return {
@@ -61,12 +59,13 @@ class App extends React.Component {
     this.setState(() => {
       return {
         authedUser: data,
-        //initializing: true,
+        
       };
     });
   }
 
   async componentDidMount() {
+    document.documentElement.setAttribute("data-theme", this.state.theme)
     const { data } = await getUserLogged();
 
     this.setState(() => {
@@ -75,6 +74,12 @@ class App extends React.Component {
         initializing: false
       };
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.thrmr !== this.state.theme) {
+      document.documentElement.setAttribute("data-theme",this.state.theme);
+    }
   }
 
   onLogout() {
@@ -128,7 +133,6 @@ class App extends React.Component {
               <Route path="/" element={<HomePage />} />
               <Route path="/add" element={<AddPage />} />
               <Route path="/notes/:id" element={<DetailPage />} />
-              <Route path="/arsip" element={<ArchivePage />} />
             </Routes>
           </main>
         </div>

@@ -13,7 +13,6 @@ function Navigation({ logout, name }) {
                     return (
                         <nav className="navigation">
                             <ul>
-                                <li><Link to="/arsip">Arsip</Link></li>
                                 <li><Link to="/">Home</Link></li>
                                 <li><Content /></li>
                                 <li><button onClick={logout} className="button-logout">{name} <FiLogOut /></button></li>
